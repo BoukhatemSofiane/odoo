@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Service Category List View -->
+        <record id="view_service_category_tree" model="ir.ui.view">
+            <field name="name">service.category.tree</field>
+            <field name="model">service.category</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Service Categories">
+                    <field name="name"/>
+                    <field name="description"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Service Category Form View -->
+        <record id="view_service_category_form" model="ir.ui.view">
+            <field name="name">service.category.form</field>
+            <field name="model">service.category</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Service Categories">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <notebook>
+                            <page string="Services">
+                                <field name="service_ids" mode="list,form" context="{'default_category_id': id}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Service List View -->
+        <record id="view_service_service_tree" model="ir.ui.view">
+            <field name="name">service.service.tree</field>
+            <field name="model">service.service</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Services">
+                    <field name="name"/>
+                    <field name="price"/>
+                    <field name="category_id"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Service Form View -->
+        <record id="view_service_service_form" model="ir.ui.view">
+            <field name="name">service.service.form</field>
+            <field name="model">service.service</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Services">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="price"/>
+                            <field name="category_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for Service Categories -->
+        <record id="action_service_category" model="ir.actions.act_window">
+            <field name="name">Service Categories</field>
+            <field name="res_model">service.category</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_service_category_tree"/>
+        </record>
+
+        <!-- Action for Services -->
+        <record id="action_service_service" model="ir.actions.act_window">
+            <field name="name">Services</field>
+            <field name="res_model">service.service</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_service_service_tree"/>
+        </record>
+
+        <!-- Root Menu -->
+        <menuitem
+            id="menu_root_services"
+            name="Services"
+            sequence="10" />
+
+        <!-- Submenu for Categories -->
+        <menuitem
+            id="menu_service_category"
+            parent="menu_root_services"
+            action="action_service_category"
+            name="Categories"
+            sequence="20" />
+
+        <!-- Submenu for Services -->
+        <menuitem
+            id="menu_service_service"
+            parent="menu_root_services"
+            action="action_service_service"
+            name="Services"
+            sequence="30" />
+
+    </data>
+</odoo>

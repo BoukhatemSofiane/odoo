@@ -1,0 +1,25 @@
+<odoo>
+    <record id="category_consulting" model="service.category">
+        <field name="name">Consulting</field>
+        <field name="description">Consulting services</field>
+    </record>
+
+    <record id="category_maintenance" model="service.category">
+        <field name="name">Maintenance</field>
+        <field name="description">Maintenance services</field>
+    </record>
+
+    <record id="service_it_consulting" model="service.service">
+        <field name="name">IT Consulting</field>
+        <field name="description">IT infrastructure and planning</field>
+        <field name="price">150.0</field>
+        <field name="category_id" ref="category_consulting"/>
+    </record>
+
+    <record id="service_system_maintenance" model="service.service">
+        <field name="name">System Maintenance</field>
+        <field name="description">Regular system maintenance and support</field>
+        <field name="price">100.0</field>
+        <field name="category_id" ref="category_maintenance"/>
+    </record>
+</odoo>
